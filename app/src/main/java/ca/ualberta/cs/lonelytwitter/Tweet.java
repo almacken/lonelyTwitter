@@ -59,4 +59,9 @@ public class Tweet {
     public void setMoods(Mood[] moods) {
         this.moods = moods;
     }
+
+    @Override
+    public String toString(){
+        return date.toString() + " | " + this.message;
+    }
 }
