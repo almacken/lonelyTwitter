@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2017 Alexander Mackenzie, CMPUT 301, University of Alberta - All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a copy of the license in this project. Otherwise please contact almacken@ualberta.ca.
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -23,6 +29,12 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Main activity of lonelyTwitter, manages the creation, display and deletion of Tweet objects
+ * @author almacken
+ * @version 1.0
+ * @see Tweet
+ */
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
@@ -35,7 +47,11 @@ public class LonelyTwitterActivity extends Activity {
 	//private GsonBuilder builder = new GsonBuilder();
 	//private Gson gson = builder.create();
 	
-	/** Called when the activity is first created. */
+	/**
+	 * Called when the activity is first created, this function sets up click listeners.<br>
+	 * The save button creates a new Tweet with the text field's body as it's message, and the
+	 * clear button deletes all saved tweets. Both call saveInFile() and update the view.
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -77,6 +93,9 @@ public class LonelyTwitterActivity extends Activity {
         });
 	}
 
+	/**
+	 * Calls loadFromFile() and sets up the ListView to display Tweets
+	 */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -86,6 +105,9 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+	/**
+	 * Loads saved Tweets
+	 */
 	private void loadFromFile() {
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
@@ -109,7 +131,10 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
+	/**
+	 * Saves current list of Tweets
+	 */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
